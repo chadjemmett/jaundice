@@ -9,13 +9,14 @@ class Jaundice < Gosu::Window
     super 600, 600
     self.caption = "Jaundice"
     @hud = Hud.new self
-    @map = Map.new(self)
-    @player = Player.new(self, 30, 30, @map)
+    @player = Player.new(self, 60, 60, @map)
     @enemies = [Enemies.new]
+    @map = Map.new(self, @player)
   end
 
   def update
     close if button_down?(Gosu::KbEscape)
+    @map.update
   end
 
   def draw

@@ -1,20 +1,28 @@
 class Map
   attr_reader :x, :y
-  def initialize(window)
+  def initialize(window, player)
     @window = window
-    @temp_number = Gosu::Font.new(30)
+    @tile = Gosu::Font.new(30)
     @x = 10
-    @width = 200
-    @height = 200
+    @lines = File.readlines("media/map.txt").map {|line| line.chomp}
+    @width = @lines[0].length
+    @height = @lines.length
+    @player = player
+  end
+
+  def update
+    @height.times do |y|
+      @width.times do |x|
+      end
+    end
   end
 
   def draw
-    10.times do |y|
-        @temp_number.draw("#", x, y * 30, 1)
-        @temp_number.draw("#", x + @width, y * 30, 1)
-      10.times do |x|
-        @temp_number.draw("#", x * 30, y, 1)
-        @temp_number.draw("#", x * 30, y + @height, 1)
+    @height.times do |y|
+      @width.times do |x|
+        if @lines[y][x] == "#"
+          @tile.draw("#", x * 30, y * 30, 1)
+        end
       end
     end
   end
