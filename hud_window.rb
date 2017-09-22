@@ -13,8 +13,8 @@ class Hud
   end
 
   def draw
-    Gosu.draw_rect(0, @width, @width, -@height * 0.16, Gosu::Color::WHITE, 1)
-    Gosu.draw_rect(10, @width - 10, @width - 20, -80, Gosu::Color::BLACK, 5)
+    Gosu.draw_rect(0, @width, @width, -@height * 0.2, Gosu::Color::WHITE, 1)
+    Gosu.draw_rect(10, @width - 10, @width - 20, -100, Gosu::Color::BLACK, 5)
     #@image.draw(lower, center, 1)
 #@selector_dot.draw(draw when needed.)
   end
