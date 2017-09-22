@@ -9,7 +9,7 @@ class Jaundice < Gosu::Window
     super 600, 600
     self.caption = "Jaundice"
     @hud = Hud.new self
-    @player = Player.new(self, 60, 60, @map)
+    @player = Player.new(self, 30, 30, @map)
     @enemies = [Enemies.new]
     @map = Map.new(self, @player)
   end
@@ -28,39 +28,18 @@ class Jaundice < Gosu::Window
   def button_down(id)
     case id
        when Gosu::KbUp
-         if @player.clear?(:up)
-           @player.move(:up)
-         end
+         @player.up
        when Gosu::KbDown
-         if @player.clear?(:down)
-           @player.move(:down)
-         end
+         @player.down
        when Gosu::KbLeft
-         if @player.clear?(:left)
-           @player.move(:left)
-         end
+         @player.left
        when Gosu::KbRight
-         if @player.clear?(:right)
-           @player.move(:right)
-         end
+         @player.right
        when Gosu::GP_UP
-         if @player.clear?(:up)
-           @player.move(:up)
-         end
        when Gosu::GP_DOWN
-         if @player.clear?(:down)
-           @player.move(:down)
-         end
        when Gosu::GP_LEFT
-         if @player.clear?(:left)
-           @player.move(:left)
-         end
        when Gosu::GP_RIGHT
-         if @player.clear?(:right)
-           @player.move(:right)
-         end
        when Gosu::GP_BUTTON_1
-         @bombs << Bomb.new(@player.x, @player.y)
     end
   end
 end

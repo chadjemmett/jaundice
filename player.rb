@@ -1,4 +1,5 @@
 class Player
+  attr_reader :x, :y
   def initialize(window, x, y, map)
     @window = window
     @x = x
@@ -12,7 +13,23 @@ class Player
   end
 
   def draw
-    @player_image.draw_rot(@x, @y, 0, 0, 1)
+    @player_image.draw(@x, @y, 100)
+  end
+
+  def up
+    @y -= 30
+  end
+
+  def down
+    @y += 30
+  end
+
+  def left
+    @x -= 30
+  end
+
+  def right
+    @x += 30
   end
 
   def move(direction)
@@ -28,32 +45,8 @@ class Player
     end
   end
 
-  def clear?(direction)
-#for testing
-    true
-=begin
-    clear = true
-    @map.each do |tile|
-      case direction
-        when :up
-          if @x/30 == tile.x/30 and (@y - 30)/30 == tile.y/30
-            clear = false
-            end
-        when :down
-          if @x/30 == tile.x/30 and (@y + 30)/30 == tile.y/30
-            clear = false
-            end
-        when :left
-          if (@x - 30)/30 == tile.x/30 and @y/30 == tile.y/30
-            clear = false
-            end
-        when :right
-          if (@x + 30)/30 == tile.x/30 and @y/30 == tile.y/30
-            clear = false
-          end
-      end
-    end
-    return clear
-=end
+  def clear?(x, y)
+   true if  @x/30 == x/30 and @y/30 == y/30
   end
+
 end
