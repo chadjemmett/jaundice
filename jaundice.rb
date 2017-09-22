@@ -28,13 +28,13 @@ class Jaundice < Gosu::Window
   def button_down(id)
     case id
        when Gosu::KbUp
-         @player.up
+         @player.up unless @map.solid?(@player.x, @player.y - 30)
        when Gosu::KbDown
-         @player.down
+         @player.down unless @map.solid?(@player.x, @player.y + 30)
        when Gosu::KbLeft
-         @player.left
+         @player.left unless @map.solid?(@player.x - 30, @player.y)
        when Gosu::KbRight
-         @player.right
+         @player.right unless @map.solid?(@player.x + 30, @player.y)
        when Gosu::GP_UP
        when Gosu::GP_DOWN
        when Gosu::GP_LEFT
