@@ -3,14 +3,10 @@ class Map
   def initialize(window, player)
     @window = window
     @tile = Gosu::Image.new("media/map_tile.png")
-    @x = 10
     @lines = File.readlines("media/map.txt").map {|line| line.chomp}
     @width = @lines[0].length
     @height = @lines.length
-    @player = player
-    @text = Gosu::Font.new(25)
-    @map_text = Gosu::Font.new(10)
-    @clash = false
+    @rooms = []
   end
 
   def update
@@ -23,6 +19,10 @@ class Map
       end
     end
     false
+  end
+
+  def new_room
+    @lines = File.readlines("media/map.txt").map {|line| line.chomp}
   end
 
 
