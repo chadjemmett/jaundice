@@ -32,12 +32,8 @@ class Map
       @width.times do |x|
         if @lines[y][x] == "#"
           @tile.draw(x * 30, y * 30, 1)
-          @map_text.draw("#{x * 30}, #{y * 30}", x * 30, y * 30 , 4)
         end
       end
     end
-    #@text.draw(@clash.to_s, 550, 60, 4)
-    @text.draw("X: #{@player.x}, Y: #{@player.y}", 350, 90, 4)
-    @text.draw("#{self.solid?(@player.x, @player.y)}", 50, 90, 4)
   end
 end
