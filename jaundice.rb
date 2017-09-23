@@ -9,16 +9,18 @@ class Jaundice < Gosu::Window
     super 600, 600
     self.caption = "Jaundice"
     @hud = Hud.new self
-    @player = Player.new(self, 30, -30, @map)
+    @player = Player.new(self, 540, 30, @map)
     @enemies = [Enemies.new]
     @map = Map.new(self, @player)
     @camera_x = 0
     @camera_y = 0
+    @window = self
     @text = Gosu::Font.new(20)
   end
 
   def update
     close if button_down?(Gosu::KbEscape)
+    camera_change
   end
 
   def draw
@@ -30,11 +32,9 @@ class Jaundice < Gosu::Window
   end
 
   def camera_change
-    if @camera_x == 0
+    if @player.x > 570
       @camera_x = -570
-    else
-      @camera_x = 0
-    end
+      end
   end
 
   def button_down(id)
