@@ -9,7 +9,7 @@ class Jaundice < Gosu::Window
     super 600, 600
     self.caption = "Jaundice"
     @hud = Hud.new self
-    @player = Player.new(self, 540, 30, @map)
+    @player = Player.new(self, 810, 510)
     @enemies = [Enemies.new]
     @map = Map.new(self, @player)
     @camera_x = 0
