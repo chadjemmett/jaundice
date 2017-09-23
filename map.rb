@@ -1,22 +1,11 @@
 class Map
-  def initialize(window, player)
+  def initialize(window)
     @window = window
     @tile = Gosu::Image.new("media/map_tile.png")
     @lines = File.readlines("media/map1.txt").map {|line| line.chomp}
     @width = @lines[0].length
     @height = @lines.length
-    @rooms = [{file: "media/map.txt"}, 
-    {file: "media/map1.txt"},
-    {file: "media/map2.txt"},
-    {file: "media/map3.txt"},
-    
-    ]
-    @camera_x = 0
-    @camera_y = 0
     @text = Gosu::Font.new(15)
-  end
-
-  def update
   end
 
   def solid?(player_x, player_y)
@@ -26,11 +15,6 @@ class Map
       end
     end
     false
-  end
-
-  def new_room(player_exit)
-    @rooms
-    @lines = File.readlines("media/map1.txt").map {|line| line.chomp}
   end
 
   def draw
