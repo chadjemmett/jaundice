@@ -24,7 +24,7 @@ class Jaundice < Gosu::Window
   end
 
   def draw
-    Gosu::translate(@camera_x, @camera_y) do
+    Gosu::translate(-@camera_x, -@camera_y) do
       @player.draw
       @map.draw
     end
@@ -32,9 +32,8 @@ class Jaundice < Gosu::Window
   end
 
   def camera_change
-    if @player.x > 570
-      @camera_x = -570
-      end
+    @camera_x = @player.x / 570 * 570
+    @camera_y = @player.y / 480 * 480
   end
 
   def button_down(id)
