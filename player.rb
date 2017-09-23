@@ -9,25 +9,29 @@ class Player
     @test_text = Gosu::Font.new(15)
   end
 
-  def update
-    
-  end
+
 
   def draw
     @player_image.draw(@x, @y, 100)
-    @test_text.draw("#{direction_leaving_screen.to_s}", 90, 30, 101)
-    @test_text.draw("#{@x}, #{@y}", 30, 30, 101)
+    @test_text.draw("#{direction_leaving_screen}", 90, 30, 101)
+    @test_text.draw("#{@x}, #{@y}", @x, @y - 20, 101)
   end
 
   def direction_leaving_screen
-    if @y <= 0 
+    if @y <= -30
       return :top
-    elsif @x <= 0 
+    elsif @x <= -30
       return :left
     elsif @x >= @window.width
       return :right
     elsif @y >= 480
-      end
+       return :bottom
+    end
+  end
+
+  def transport_to_spot(x, y)
+    @x = x
+    @y = y
   end
 
   def up
