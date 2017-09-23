@@ -9,20 +9,31 @@ class Jaundice < Gosu::Window
     super 600, 600
     self.caption = "Jaundice"
     @hud = Hud.new self
-    @player = Player.new(self, 30, 30, @map)
+    @player = Player.new(self, 540, 30, @map)
     @enemies = [Enemies.new]
     @map = Map.new(self, @player)
+    @camera_x = 0
+    @camera_y = 0
+    @window = self
+    @text = Gosu::Font.new(20)
   end
 
   def update
     close if button_down?(Gosu::KbEscape)
-    @map.update
+    camera_change
   end
 
   def draw
-    @player.draw
-    @hud.draw
-    @map.draw
+    Gosu::translate(-@camera_x, -@camera_y) do
+      @player.draw
+      @map.draw
+    end
+      @hud.draw
+  end
+
+  def camera_change
+    @camera_x = @player.x / 570 * 570
+    @camera_y = @player.y / 480 * 480
   end
 
   def button_down(id)
@@ -40,6 +51,9 @@ class Jaundice < Gosu::Window
        when Gosu::GP_LEFT
        when Gosu::GP_RIGHT
        when Gosu::GP_BUTTON_1
+#for testing
+       when Gosu::KbN
+         camera_change
     end
   end
 end

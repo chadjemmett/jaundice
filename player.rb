@@ -6,14 +6,32 @@ class Player
     @y = y
     @map = map
     @player_image = Gosu::Image.new("media/player_sprite.png")
+    @test_text = Gosu::Font.new(15)
   end
 
-  def update
 
-  end
 
   def draw
     @player_image.draw(@x, @y, 100)
+    @test_text.draw("#{direction_leaving_screen}", 90, 30, 101)
+    @test_text.draw("#{@x}, #{@y}", @x, @y - 20, 101)
+  end
+
+  def direction_leaving_screen
+    if @y <= -30
+      return :top
+    elsif @x <= -30
+      return :left
+    elsif @x >= @window.width
+      return :right
+    elsif @y >= 480
+       return :bottom
+    end
+  end
+
+  def transport_to_spot(x, y)
+    @x = x
+    @y = y
   end
 
   def up
@@ -31,22 +49,4 @@ class Player
   def right
     @x += 30
   end
-
-  def move(direction)
-    case direction
-      when :up
-        @y -= 30 #unless @y == TOP
-      when :down
-        @y += 30 #unless @y == BOTTOM
-      when :left
-        @x -= 30 #unless @x == LEFT
-      when :right
-        @x += 30 #unless @x == RIGHT
-    end
-  end
-
-  def clear?(x, y)
-   true if  @x/30 == x/30 and @y/30 == y/30
-  end
-
 end
