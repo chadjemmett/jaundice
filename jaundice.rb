@@ -11,7 +11,7 @@ class Jaundice < Gosu::Window
     @hud = Hud.new self
     @player = Player.new(self, 810, 510)
     @enemies = [Enemies.new]
-    @map = Map.new(self)
+    @map = Map.new(self, @player)
     @camera_x = 0
     @camera_y = 0
     @window = self
