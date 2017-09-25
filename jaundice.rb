@@ -21,6 +21,7 @@ class Jaundice < Gosu::Window
   def update
     close if button_down?(Gosu::KbEscape)
     camera_change
+    @map.visited_tiles
   end
 
   def draw
@@ -54,7 +55,6 @@ class Jaundice < Gosu::Window
        when Gosu::GP_BUTTON_1
 #for testing
        when Gosu::KbN
-         camera_change
     end
   end
 end

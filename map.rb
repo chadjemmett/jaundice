@@ -8,6 +8,7 @@ class Map
     @height = @lines.length
     @text = Gosu::Font.new(15)
     @player = player
+    @visited = []
   end
 
   def solid?(player_x, player_y)
@@ -19,22 +20,24 @@ class Map
     false
   end
 
-  def fog
-  end
-
-  def draw
+  def visited_tiles
     @height.times do |y|
       @width.times do |x|
         if @lines[y][x] == "#"
-           distance = Gosu.distance(x * 30, y * 30, @player.x, @player.y)
-           if (30..60).include?(distance)
-             @tile[0].draw(x * 30, y * 30, 1)
-           elsif (60..90).include?(distance)
-             @tile[2].draw(x * 30, y * 30, 1)
-           end
-           #@text.draw("#{x * 30}, #{y * 30}", x * 30, y * 30, 100)
+          distance = Gosu.distance(x * 30, y * 30, @player.x, @player.y)
+          if (30..60).include?(distance)
+            @visited << {tile: 0, x: x * 30, y: y * 30 }
+          elsif (60..120).include?(distance)
+            @visited << {tile: 2, x: x * 30, y: y * 30}
+          end
         end
       end
+    end
+  end
+
+  def draw
+    @visited.each do |tile_data|
+      @tile[tile_data[:tile]].draw(tile_data[:x], tile_data[:y], 1)
     end
   end
 end
