@@ -10,7 +10,6 @@ class Jaundice < Gosu::Window
     self.caption = "Jaundice"
     @hud = Hud.new self
     @player = Player.new(self, 810, 510)
-    @enemies = [Enemies.new]
     @map = Map.new(self, @player)
     @camera_x = 0
     @camera_y = 0
@@ -21,6 +20,7 @@ class Jaundice < Gosu::Window
   def update
     close if button_down?(Gosu::KbEscape)
     camera_change
+    @map.visited_tiles
   end
 
   def draw
@@ -53,7 +53,6 @@ class Jaundice < Gosu::Window
        when Gosu::GP_BUTTON_1
 #for testing
        when Gosu::KbN
-         camera_change
     end
   end
 end
