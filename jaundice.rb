@@ -9,8 +9,8 @@ class Jaundice < Gosu::Window
     super 600, 600
     self.caption = "Jaundice"
     @hud = Hud.new self
-    @player = Player.new(self, 810, 510)
-    @enemies = [Enemies.new]
+    @player = Actor.new(self, 1110, 330, "media/player_sprite.png", true)
+    @monster = Actor.new(self, 1110, 300, "media/player_sprite.png", false)
     @map = Map.new(self, @player)
     @camera_x = 0
     @camera_y = 0
@@ -27,6 +27,7 @@ class Jaundice < Gosu::Window
     Gosu::translate(-@camera_x, -@camera_y) do
       @player.draw
       @map.draw
+      @monster.draw
     end
       @hud.draw
   end

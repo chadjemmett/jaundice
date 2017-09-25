@@ -1,15 +1,16 @@
-class Player
+class Actor
   attr_reader :x, :y
-  def initialize(window, x, y)
+  def initialize(window, x, y, image_file, player=false)
     @window = window
     @x = x
     @y = y
-    @player_image = Gosu::Image.new("media/player_sprite.png")
+    @image_tile = Gosu::Image.new(image_file)
+    @player = player
     @test_text = Gosu::Font.new(15)
   end
 
   def draw
-    @player_image.draw(@x, @y, 100)
+    @image_tile.draw(@x, @y, 100)
     @test_text.draw("#{@x}, #{@y}", @x, @y - 20, 101)
   end
 
