@@ -1,14 +1,14 @@
 class Map
-  def initialize(window, player)
+  def initialize(window, file,  player)
     @window = window
     @tile = Gosu::Image.load_tiles("media/map_tile.png", 30, 30)
-    @tile_to_draw
-    @lines = File.readlines("media/map1.txt").map {|line| line.chomp}
+    @lines = File.readlines(file).map {|line| line.chomp}
     @width = @lines[0].length
     @height = @lines.length
     @text = Gosu::Font.new(15)
     @player = player
     @visited = []
+    @exit = [930, 330]
   end
 
   def solid?(player_x, player_y)
@@ -18,6 +18,10 @@ class Map
       end
     end
     false
+  end
+
+  def player_at_exit?
+    [@player.x, @player.y] == @exit
   end
 
   def visited_tiles
@@ -38,6 +42,7 @@ class Map
   def draw
     @visited.each do |tile_data|
       @tile[tile_data[:tile]].draw(tile_data[:x], tile_data[:y], 1)
+      @tile[1].draw(@exit[0], @exit[1], 1)
     end
   end
 end

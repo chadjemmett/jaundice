@@ -11,7 +11,7 @@ class Jaundice < Gosu::Window
     @hud = Hud.new self
     @player = Actor.new(self, 1110, 330, "media/player_sprite.png", true)
     @monster = Actor.new(self, 1110, 300, "media/player_sprite.png", false)
-    @map = Map.new(self, @player)
+    @map = Map.new(self, "media/map1.txt", @player)
     @camera_x = 0
     @camera_y = 0
     @window = self
@@ -38,6 +38,12 @@ class Jaundice < Gosu::Window
     @camera_y = @player.y / 480 * 480
   end
 
+  def new_floor
+   if @map.player_at_exit?
+     @map = Map.new(self, "media/map.txt", @player)
+     end
+  end
+
   def button_down(id)
     case id
        when Gosu::KbUp
@@ -55,6 +61,7 @@ class Jaundice < Gosu::Window
        when Gosu::GP_BUTTON_1
 #for testing
        when Gosu::KbN
+         new_floor
     end
   end
 end
