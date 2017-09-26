@@ -8,7 +8,8 @@ class Map
     @text = Gosu::Font.new(15)
     @player = player
     @visited = []
-    @exit = [930, 330]
+    @exit = {tile: 1, x: 300, y: 300}
+    @visited << @exit
   end
 
   def solid?(player_x, player_y)
@@ -21,9 +22,9 @@ class Map
   end
 
   def player_at_exit?
-    [@player.x, @player.y] == @exit
+    [@player.x, @player.y] == [@exit[:x], @exit[:y]]
   end
-
+# we check for tiles that are in range. then we add them to the visited array.
   def visited_tiles
     @height.times do |y|
       @width.times do |x|
@@ -38,11 +39,11 @@ class Map
       end
     end
   end
-
+# only draws the tiles in the visited array. And the exit tile.
   def draw
     @visited.each do |tile_data|
       @tile[tile_data[:tile]].draw(tile_data[:x], tile_data[:y], 1)
-      @tile[1].draw(@exit[0], @exit[1], 1)
+      @tile[@exit[:tile]].draw(@exit[:x], @exit[:y], 1)
     end
   end
 end
