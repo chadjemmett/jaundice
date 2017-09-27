@@ -5,7 +5,7 @@ class Hud
     @height = @window.height
 # an image to be a frame.
 #@frame = Gous::Image.new("media/frame.png")
-  #@selector_dot = Gosu::Image.new("media/dot.png")
+    @selector_dot = Gosu::Image.new("media/dot.png")
   end
 
   def update
