@@ -3,6 +3,7 @@ require_relative 'hud_window'
 require_relative 'player'
 require_relative 'map'
 require_relative 'enemies'
+require_relative 'messages'
 
 class Jaundice < Gosu::Window
   def initialize
