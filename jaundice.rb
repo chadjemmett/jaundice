@@ -17,12 +17,14 @@ class Jaundice < Gosu::Window
     @camera_y = 0
     @window = self
     @text = Gosu::Font.new(20)
+    @message = Messages.new(self, 60, 490)
   end
 
   def update
     close if button_down?(Gosu::KbEscape)
     camera_change
     @map.visited_tiles
+    @message.scroll
   end
 
   def draw
@@ -32,6 +34,7 @@ class Jaundice < Gosu::Window
       @monster.draw
     end
       @hud.draw
+      @message.draw
   end
 
   def camera_change
@@ -63,6 +66,7 @@ class Jaundice < Gosu::Window
 #for testing
        when Gosu::KbN
          new_floor
+         @message.make_visible
     end
   end
 end
