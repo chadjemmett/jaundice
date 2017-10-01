@@ -5,7 +5,8 @@ class Messages
     @window = window
     @text = Gosu::Font.new(25)
     @message = "hello world"
-    @visible = false
+    @test_message = Gosu::Font.new(15)
+    @visible = true
   end
 
   def draw
@@ -13,13 +14,15 @@ class Messages
   end
 
   def scroll
+    if @y >= 480
+      @y -= 3
+      @visible = true
+    else
+      @y -= 0
+      @visible = false
+      end
   end
 
   def make_visible
-    if @visible
-      @visible = false
-      else
-        @visible = true
-      end
   end
 end

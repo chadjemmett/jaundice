@@ -17,7 +17,7 @@ class Jaundice < Gosu::Window
     @camera_y = 0
     @window = self
     @text = Gosu::Font.new(20)
-    @message = Messages.new(self, 60, 490)
+    @message = Messages.new(self, 60, 590)
   end
 
   def update
@@ -66,7 +66,6 @@ class Jaundice < Gosu::Window
 #for testing
        when Gosu::KbN
          new_floor
-         @message.make_visible
     end
   end
 end
