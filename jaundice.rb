@@ -12,7 +12,7 @@ class Jaundice < Gosu::Window
     @hud = Hud.new self
     @player = Actor.new(self, 90, 90, "media/player_sprite.png", true)
     @monster = Actor.new(self, 1110, 300, "media/player_sprite.png", false)
-    @map = Map.new(self, "media/map0.txt", @player)
+    @map = Map.new(self, "media/map2.txt", @player)
     @camera_x = 0
     @camera_y = 0
     @window = self
@@ -38,13 +38,13 @@ class Jaundice < Gosu::Window
   end
 
   def camera_change
-    @camera_x = @player.x / 570 * 570
+    @camera_x = @player.x / 600 * 600
     @camera_y = @player.y / 480 * 480
   end
 
   def new_floor
    if @map.player_at_exit?
-     @map = Map.new(self, "media/map.txt", @player)
+     @map = Map.new(self, "media/map2.txt", @player)
      end
   end
 
