@@ -10,9 +10,9 @@ class Jaundice < Gosu::Window
     super 600, 600
     self.caption = "Jaundice"
     @hud = Hud.new self
-    @player = Actor.new(self, 1110, 330, "media/player_sprite.png", true)
+    @player = Actor.new(self, 90, 90, "media/player_sprite.png", true)
     @monster = Actor.new(self, 1110, 300, "media/player_sprite.png", false)
-    @map = Map.new(self, "media/mega_map.txt", @player)
+    @map = Map.new(self, "media/map0.txt", @player)
     @camera_x = 0
     @camera_y = 0
     @window = self
