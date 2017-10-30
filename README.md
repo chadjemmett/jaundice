@@ -7,8 +7,8 @@ Ideas:
 * If you are too healthy the number of days increases.
 * If you are not healthy enough, you die or you get transplanted.
 * There are drugs and other resources to find. Some of them decrease your health and increase your chance of transplant. other things make you healthier but increase the number of days.
-* Enemies to fight. Boredom, depression, lack of money. 
-* You can get items to increas your health if you are close to death. But they make it harder to get a transplant.
+* Enemies to fight. Boredom, depression, lack of money.
+* You can get items to increase your health if you are close to death. But they make it harder to get a transplant.
 
 Items
 =====
@@ -39,7 +39,15 @@ Style
 * Like Shiren, we'll have fixed levels. Something like the 'fields of hope' 'caves of despair' 'swamps of pain' stuff like that.
 * This will have a fantasy type feel. But all the effects will be real effects. Only exagerated for comic and dark effect.
 * There will be a main screeen with a HUD below. You'll see messages Your basic stats and some othe info.
-*
+* I think I'll rip off 1 bit rogue. It's an iOs game.
+
+MVP
+===
+1. 3 levels
+2. 2 enemies
+3. 2 status effects
+4. random combat, with like, 3 - 5 hit points.
+5. the basic balance between health and sickness to get a transplant.
 
 Priorities
 =========
@@ -48,7 +56,7 @@ Priorities
 3. ??
 4. Profit
 
-* when the meld goes up the health goes down. 
+* when the meld goes up the health goes down.
 * There is a narrow range you have to maintain to get a trasnplant at the right time.
 * Your meld score has to be in a certain range. 25 - 35 or so.
 * Your health has to be good enough to get a trasnplant. I'm not sure of the range.
