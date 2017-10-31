@@ -12,7 +12,7 @@ class Jaundice < Gosu::Window
     @hud = Hud.new self
     @player = Actor.new(self, 90, 90, "media/player_sprite.png", true)
     @monster = Actor.new(self, 1110, 300, "media/player_sprite.png", false)
-    @map = Map.new(self, "media/map2.txt", @player)
+    @map = Map.new(self, "media/map2.txt", @player, {tile: 1, x: 180, y: 360})
     @camera_x = 0
     @camera_y = 0
     @window = self
