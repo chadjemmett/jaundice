@@ -6,21 +6,15 @@ class Actor
     @y = y
     @image_tile = Gosu::Image.new(image_file)
     @player = player
-    @test_text = Gosu::Font.new(15)
+    #@test_text = Gosu::Font.new(15)
   end
 
   def update
-    @x = 30
-    @y = 30
-    @x = 510
-    @y = 90
-    @x = 90
-    @y = 390
   end
 
   def draw
     @image_tile.draw(@x, @y, 100)
-    @test_text.draw("#{@x}, #{@y}", @x, @y - 20, 101)
+    #@test_text.draw("#{@x}, #{@y}", @x, @y - 20, 101)
   end
 
   def transport_to_spot(x, y)
