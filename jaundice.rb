@@ -4,6 +4,7 @@ require_relative 'player'
 require_relative 'map'
 require_relative 'enemies'
 require_relative 'messages'
+require_relative 'tiles'
 
 class Jaundice < Gosu::Window
   def initialize
@@ -23,8 +24,10 @@ class Jaundice < Gosu::Window
   def update
     close if button_down?(Gosu::KbEscape)
     camera_change
-    @map.visited_tiles
+    #@map.visited_tiles
+    @map.update
     @message.scroll
+    #@player.update
   end
 
   def draw
