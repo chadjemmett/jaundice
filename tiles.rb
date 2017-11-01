@@ -11,39 +11,22 @@ class Tiles
 
   def distance_from_player(x, y)
     distance = Gosu.distance(@x, @y, x, y)
-    if (30..60).include?(distance)
+    if (30..90).include?(distance)
       @visible = true
       @hazy = false
     end
-    if (60..120).include?(distance)
-      @visible = false
+    if (90..150).include?(distance)
       @hazy = true
-    else
-      @hazy = false
-      @visible = false
     end
   end
 
   def draw
-    if @visible
-      case @type
-        when :basic
-          @tile[0].draw(@x, @y, 1)
-        when :key
-          @tile[1].draw(@x, @y, 1)
-        when :exit
-          @tile[2].draw(@x, @y, 1)
-      end
-    elsif @hazy
-      case @type
-        when :basic
-          @tile[0].draw(@x, @y, 1)
-        when :key
-          @tile[1].draw(@x, @y, 1)
-        when :exit
-          @tile[2].draw(@x, @y, 1)
-      end
-    end
+    @tile[0].draw(@x, @y, 1) if @visible
+    @tile[2].draw(@x, @y, 1) if @hazy
+    @tile[1].draw(@x, @y, 1) if @type == :exit and @visible
+    @tile[5].draw(@x, @y, 1) if @type == :exit and @hazy
+    @tile[3].draw(@x, @y, 1) if @type == :key and @visible
+    @tile[4].draw(@x, @y, 9) if @type == :key and @hazy
   end
 
   def player_at_exit?(x, y)

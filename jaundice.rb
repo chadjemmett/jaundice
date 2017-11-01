@@ -25,7 +25,9 @@ class Jaundice < Gosu::Window
     close if button_down?(Gosu::KbEscape)
     camera_change
     #@map.visited_tiles
+    @map.update
     @message.scroll
+    #@player.update
   end
 
   def draw

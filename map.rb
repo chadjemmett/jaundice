@@ -16,7 +16,15 @@ class Map
   def create_tiles
     @height.times do |y|
       @width.times do |x|
-        @tiles << Tiles.new(x * 30, y * 30, :basic)
+        tile = @lines 
+        case @lines[y][x]
+          when "#"
+            @tiles << Tiles.new(x * 30, y * 30, :basic)
+          when "K"
+            @tiles << Tiles.new(x * 30, y * 30, :key)
+          when "E"
+            @tiles << Tiles.new(x * 30, y * 30, :exit)
+         end
       end
     end
   end
@@ -28,6 +36,10 @@ class Map
       end
     end
     false
+  end
+
+  def update
+    @tiles.each {|t| t.distance_from_player(@player.x, @player.y)}
   end
 
   def player_at_exit?
