@@ -1,6 +1,7 @@
 This is a roguelike about liver failure. You try to live long enough to get a liver transplant.
 There are a random number of days until you get transplanted. You have to live through the itching, the fatigue and the depression. If you can stay alive the number of days it takes. Then you get a transplant.
 There are a random number of days that you have to survive. You don't know the number of days. It might be 100 days. It might be 5. You never know.
+
 Ideas:
 =====
 * There's a random number of days you have to survive.
