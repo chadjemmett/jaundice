@@ -11,8 +11,10 @@ class Jaundice < Gosu::Window
     super 600, 600
     self.caption = "Jaundice"
     @hud = Hud.new self
-    @player = Actor.new(self, 90, 90, "media/player_sprite.png", true)
-    @monster = Actor.new(self, 1110, 300, "media/player_sprite.png", false)
+    @player = Actor.new(self, 90, 90, "media/player_sprite.png", true, true)
+    @monster = Actor.new(self, 540, 90, "media/player_sprite.png", false)
+    @monster2 = Actor.new(self, 270, 30, "media/player_sprite.png", false)
+    @queue = [@player, @monster, @monster2]
     @map = Map.new(self, "media/map2.txt", @player, {tile: 1, x: 180, y: 360})
     @camera_x = 0
     @camera_y = 0
@@ -24,6 +26,12 @@ class Jaundice < Gosu::Window
   def update
     close if button_down?(Gosu::KbEscape)
     camera_change
+    if @queue[0].player == false and @queue[0].turn
+      @queue[0].auto_move
+      @queue[0].switch_turn
+      @queue.rotate!
+      @queue[0].switch_turn
+    end
     @map.update
     @message.scroll
   end
@@ -33,6 +41,7 @@ class Jaundice < Gosu::Window
       @player.draw
       @map.draw
       @monster.draw
+      @monster2.draw
     end
       @hud.draw
       @message.draw
@@ -50,24 +59,32 @@ class Jaundice < Gosu::Window
   end
 
   def button_down(id)
-    case id
-       when Gosu::KbUp
-         @player.up unless @map.solid?(@player.x, @player.y - 30)
-       when Gosu::KbDown
-         @player.down unless @map.solid?(@player.x, @player.y + 30)
-       when Gosu::KbLeft
-         @player.left unless @map.solid?(@player.x - 30, @player.y)
-       when Gosu::KbRight
-         @player.right unless @map.solid?(@player.x + 30, @player.y)
-       when Gosu::GP_UP
-       when Gosu::GP_DOWN
-       when Gosu::GP_LEFT
-       when Gosu::GP_RIGHT
-       when Gosu::GP_BUTTON_1
-#for testing
-       when Gosu::KbN
-         new_floor
-    end
+      if @player.turn and @queue[0] == @player
+        case id
+           when Gosu::KbUp
+             @player.up unless @map.solid?(@player.x, @player.y - 30)
+             @player.switch_turn
+             @queue.rotate!
+             @queue[0].switch_turn
+           when Gosu::KbDown
+             @player.down unless @map.solid?(@player.x, @player.y + 30)
+             @player.switch_turn
+             @queue.rotate!
+             @queue[0].switch_turn
+           when Gosu::KbLeft
+             @player.left unless @map.solid?(@player.x - 30, @player.y)
+             @player.switch_turn
+             @queue.rotate!
+             @queue[0].switch_turn
+           when Gosu::KbRight
+             @player.right unless @map.solid?(@player.x + 30, @player.y)
+             @player.switch_turn
+             @queue.rotate!
+             @queue[0].switch_turn
+           when Gosu::KbN
+             new_floor
+        end
+      end
   end
 end
 window = Jaundice.new

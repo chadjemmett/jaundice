@@ -1,12 +1,16 @@
 class Actor
-  attr_reader :x, :y
-  def initialize(window, x, y, image_file, player=false)
+  attr_reader :x, :y, :turn, :player, :visible, :hazy
+  def initialize(window, x, y, image_file, turn=false, player=false)
     @window = window
     @x = x
     @y = y
     @image_tile = Gosu::Image.new(image_file)
     @player = player
-    #@test_text = Gosu::Font.new(15)
+    @turn = turn
+    @visible = false
+    @hazy =  false
+    @test_text = Gosu::Font.new(15)
+
   end
 
   def update
@@ -14,7 +18,7 @@ class Actor
 
   def draw
     @image_tile.draw(@x, @y, 100)
-    #@test_text.draw("#{@x}, #{@y}", @x, @y - 20, 101)
+    @test_text.draw("#{@x}, #{@y}", @x, @y - 20, 101)
   end
 
   def transport_to_spot(x, y)
@@ -37,4 +41,18 @@ class Actor
   def right
     @x += 30
   end
+
+  def switch_turn
+    if @turn
+      @turn = false
+    else
+      @turn = true
+    end
+  end
+
+  def auto_move
+   @x -= 30 
+  end
+
+
 end
