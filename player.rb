@@ -7,8 +7,6 @@ class Actor
     @image_tile = Gosu::Image.new(image_file)
     @player = player
     @turn = turn
-    @visible = false
-    @hazy =  false
     @test_text = Gosu::Font.new(15)
 
   end

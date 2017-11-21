@@ -1,5 +1,4 @@
 class Tiles
-  attr_reader :exit, :key
   def initialize(x, y, type)
     @x = x
     @y = y
