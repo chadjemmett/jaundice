@@ -26,6 +26,7 @@ class Tiles
     @tile[5].draw(@x, @y, 1) if @type == :exit and @hazy
     @tile[3].draw(@x, @y, 1) if @type == :key and @visible
     @tile[4].draw(@x, @y, 9) if @type == :key and @hazy
+    
   end
 
   def player_at_exit?(x, y)

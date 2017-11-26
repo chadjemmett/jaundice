@@ -10,10 +10,11 @@ class Jaundice < Gosu::Window
   def initialize
     super 600, 600
     self.caption = "Jaundice"
+    @tiles = Gosu::Image.load_tiles("media/map_tile.png", 30, 30)
     @hud = Hud.new self
-    @player = Actor.new(self, 90, 90, "media/player_sprite.png", true, true)
-    @monster = Actor.new(self, 540, 90, "media/player_sprite.png", false)
-    @monster2 = Actor.new(self, 270, 30, "media/player_sprite.png", false)
+    @player = Actor.new(self, 90, 90, @tiles, true, true)
+    @monster = Actor.new(self, 540, 90, @tiles, false)
+    @monster2 = Actor.new(self, 540, 30, @tiles, false)
     @queue = [@player, @monster, @monster2]
     @map = Map.new(self, "media/map2.txt", @player, {tile: 1, x: 180, y: 360})
     @camera_x = 0
@@ -32,6 +33,8 @@ class Jaundice < Gosu::Window
       @queue.rotate!
       @queue[0].switch_turn
     end
+    [@monster2, @monster].each {|m| m.distance_from_player(@player.x, @player.y)}
+    @monster.distance_from_player(@player.x, @player.y)
     @map.update
     @message.scroll
   end
