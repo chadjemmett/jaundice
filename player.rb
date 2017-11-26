@@ -10,7 +10,6 @@ class Actor
     @test_text = Gosu::Font.new(15)
     @hazy = false
     @visible = false
-    puts @image_tile.class
   end
 
   def update
